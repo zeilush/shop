@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.5.6.RELEASE"
+        classpath "org.wildfly.swarm:wildfly-swarm-plugin:1.0.0.Alpha5"
+    }
+}
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'wildfly-swarm'
+apply plugin: 'application'
+
+mainClassName = 'zeilush.shop.build.RestServer'
+
+swarm {
+    properties {
+        swarm.http.port = 8181
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.wildfly.swarm:bom:1.0.0.Alpha8"
+    }
+}
+
+dependencies {
+    compile "org.wildfly.swarm:wildfly-swarm-jaxrs:1.0.0.Alpha5"
+}
