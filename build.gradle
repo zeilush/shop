@@ -1,15 +1,34 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.5.6.RELEASE"
+    }
+}
+
 allprojects {
     group 'zeilush.shop'
     version '1.0-SNAPSHOT'
-}
 
-subprojects {
+
     apply plugin: "java"
+    apply plugin: "io.spring.dependency-management"
 
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     repositories {
-        mavenCentral()
         mavenLocal()
+        jcenter()
+    }
+
+    dependencyManagement {
+        dependencies {
+            dependency "javax:javaee-api:7.0:provided"
+        }
     }
 }
 

@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * Created by AAA on 07.03.2016.
  */
-@Path("/")
+@Path("/calc")
 public class Calculator {
     @GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -1,34 +1,40 @@
-group 'zeilush.shop'
-
 buildscript {
+    ext {
+        wildflySwarmVersion = "1.0.0.Alpha6"
+    }
+
     repositories {
         mavenLocal()
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:0.5.6.RELEASE"
-        classpath "org.wildfly.swarm:wildfly-swarm-plugin:1.0.0.Alpha5"
+        classpath "org.wildfly.swarm:wildfly-swarm-plugin:$wildflySwarmVersion"
     }
 }
+
 apply plugin: "io.spring.dependency-management"
 apply plugin: 'wildfly-swarm'
+apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'zeilush.shop.build.RestServer'
+mainClassName = 'zeilush.shop.server.RestServer'
 
 swarm {
     properties {
-        swarm.http.port = 8181
+        swarm.http.port = 8080
     }
 }
-
 dependencyManagement {
     imports {
-        mavenBom "org.wildfly.swarm:bom:1.0.0.Alpha8"
+        mavenBom "org.wildfly.swarm:bom:$wildflySwarmVersion"
     }
 }
 
 dependencies {
-    compile "org.wildfly.swarm:wildfly-swarm-jaxrs:1.0.0.Alpha5"
+    compile "org.wildfly.swarm:jaxrs"
+    compile "org.wildfly.swarm:ejb"
+    compile "org.wildfly.swarm:weld"
+    compile project(":order")
 }
