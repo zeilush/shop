@@ -1,8 +1,6 @@
-group 'zeilush.shop'
-version '1.0-SNAPSHOT'
-
 allprojects {
-    task hello << { task -> println "I'm $task.project.name" }
+    group 'zeilush.shop'
+    version '1.0-SNAPSHOT'
 }
 
 subprojects {

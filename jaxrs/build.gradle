@@ -1,3 +1,5 @@
+group 'zeilush.shop'
+
 buildscript {
     repositories {
         mavenLocal()
