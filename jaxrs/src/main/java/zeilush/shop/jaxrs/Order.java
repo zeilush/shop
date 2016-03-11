@@ -17,6 +17,7 @@ public class Order {
     @Inject
     private OrderManager orderManager;
 
+    @Path("/v1")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String doOrder() {

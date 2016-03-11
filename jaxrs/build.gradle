@@ -36,5 +36,6 @@ dependencies {
     compile "org.wildfly.swarm:jaxrs"
     compile "org.wildfly.swarm:ejb"
     compile "org.wildfly.swarm:weld"
+    compile "org.wildfly.swarm:jaxrs-weld"
     compile project(":order")
 }
