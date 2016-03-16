@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -12,15 +12,35 @@
     </parent>
 
     <artifactId>jaxrs</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>-jar</argument>
+                                <argument>target/jaxrs-${project.version}-swarm.jar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.wildfly.swarm</groupId>
                 <artifactId>wildfly-swarm-plugin</artifactId>
                 <configuration>
-                    <mainClass>zeilush.shop.server.RestServer</mainClass>
+                    <mainClass>zeilush.shop.Main</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -38,21 +58,17 @@
     </build>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>org.wildfly.swarm</groupId>-->
-            <!--<artifactId>jpa</artifactId>-->
-            <!--<version>${version.wildfly-swarm}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>jpa</artifactId>
+            <version>${version.wildfly-swarm}</version>
+        </dependency>
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>jaxrs</artifactId>
             <version>${version.wildfly-swarm}</version>
         </dependency>
-        <dependency>
-            <groupId>zeilush.shop</groupId>
-            <artifactId>order</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>ejb</artifactId>
@@ -63,11 +79,11 @@
             <artifactId>jaxrs-weld</artifactId>
             <version>${version.wildfly-swarm}</version>
         </dependency>
-        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>datasources</artifactId>
-            <version>${version.wildfly-swarm}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.wildfly.swarm</groupId>-->
+        <!--<artifactId>datasources</artifactId>-->
+        <!--<version>${version.wildfly-swarm}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>weld</artifactId>
@@ -76,7 +92,15 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.3-1102-jdbc41</version>
+        </dependency>
+        <dependency>
+            <groupId>zeilush.shop</groupId>
+            <artifactId>order</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
         </dependency>
     </dependencies>
 </project>
