@@ -1,5 +1,6 @@
 package zeilush.shop.config;
 
+import javax.ejb.Startup;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
@@ -12,6 +13,7 @@ import javax.persistence.Persistence;
 /**
  * Created by AAA on 15.03.2016.
  */
+@Startup
 public class EntityManagerFactoryProducer {
 
     @Produces

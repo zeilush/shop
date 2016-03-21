@@ -1,10 +1,12 @@
 package zeilush.shop.jaxrs;
 
+import zeilush.shop.interceptor.Monitored;
 import zeilush.shop.order.boundary.OrderManager;
 import zeilush.shop.order.entity.Order;
 import zeilush.shop.order.entity.OrderItem;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * Created by AAA on 08.03.2016.
  */
+@Monitored
 @Path("/order")
 @Produces(MediaType.APPLICATION_JSON)
 public class OrderResource {
@@ -32,7 +35,7 @@ public class OrderResource {
 
     @Path("/item")
     @POST
-    public OrderItem createItem(OrderItem item) {
+    public OrderItem createItem(@Valid OrderItem item) {
         System.out.print(item.getName());
         return orderManager.createItem(item);
     }
