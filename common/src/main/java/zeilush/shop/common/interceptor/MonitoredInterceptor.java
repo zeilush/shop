@@ -1,4 +1,4 @@
-package zeilush.shop.interceptor;
+package zeilush.shop.common.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

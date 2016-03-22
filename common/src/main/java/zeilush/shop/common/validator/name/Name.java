@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * Created by AAA on 21.03.2016.
  */
 @Constraint(validatedBy = {})
-@Pattern(regexp = "[a-zA-Z]", message = "{name.pattern}")
+@Pattern(regexp = "[a-zA-Z]+", message = "{name.pattern}")
 @Size(min = 2, max = 50, message = "{name.size}")
 @Documented
 @Target({ANNOTATION_TYPE, METHOD, FIELD})

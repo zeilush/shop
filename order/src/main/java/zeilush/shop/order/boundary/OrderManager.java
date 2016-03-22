@@ -2,7 +2,7 @@ package zeilush.shop.order.boundary;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zeilush.shop.order.Monitored;
+import zeilush.shop.common.interceptor.Monitored;
 import zeilush.shop.order.OrderRepository;
 import zeilush.shop.order.entity.Order;
 import zeilush.shop.order.entity.OrderItem;
@@ -28,12 +28,8 @@ public class OrderManager {
     @Inject
     private EntityManager em;
 
-    @Inject
-    private String configStr;
 
     public OrderItem createItem(@Valid OrderItem item) {
-        System.out.print("configStr; " + configStr);
-
         em.persist(item);
 
         return item;
@@ -46,7 +42,6 @@ public class OrderManager {
     }
 
     public List<Order> findOrderByName(String name) {
-        logger.info("configStr {} " + configStr, configStr);
         return orderRepository.findByNameStartsWith(name);
     }
 }

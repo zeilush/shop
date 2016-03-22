@@ -1,6 +1,8 @@
 package zeilush.shop.jaxrs;
 
-import zeilush.shop.interceptor.Monitored;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import zeilush.shop.common.interceptor.Monitored;
 import zeilush.shop.order.boundary.OrderManager;
 import zeilush.shop.order.entity.Order;
 import zeilush.shop.order.entity.OrderItem;
@@ -19,6 +21,8 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class OrderResource {
 
+    private static final Logger logger = LoggerFactory.getLogger(OrderResource.class);
+
     @Inject
     private OrderManager orderManager;
 
@@ -36,7 +40,6 @@ public class OrderResource {
     @Path("/item")
     @POST
     public OrderItem createItem(@Valid OrderItem item) {
-        System.out.print(item.getName());
         return orderManager.createItem(item);
     }
 }

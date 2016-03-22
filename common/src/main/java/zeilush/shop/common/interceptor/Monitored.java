@@ -1,4 +1,4 @@
-package zeilush.shop.interceptor;
+package zeilush.shop.common.interceptor;
 
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.Retention;
