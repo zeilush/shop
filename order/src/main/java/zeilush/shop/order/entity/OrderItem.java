@@ -1,5 +1,7 @@
 package zeilush.shop.order.entity;
 
+import zeilush.shop.common.validator.name.Name;
+
 import javax.persistence.*;
 
 /**
@@ -12,6 +14,7 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Name
     private String name;
 
     public Long getId() {

@@ -19,7 +19,6 @@ public class Main {
         container.start();
 
         container.deploy(Swarm.artifact("org.postgresql:postgresql", "org.postgresql"));
-
         // Create a JDBC driver deployment using maven groupId:artifactId
         // The version is resolved from your pom.xml's <dependency>
 //        container.deploy(Swarm.artifact("com.h2database:h2", "h2"));
@@ -61,6 +60,7 @@ public class Main {
 //        deployment.addAllDependencies();
         deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", Main.class.getClassLoader()), "classes/META-INF/persistence.xml");
         deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/beans.xml", Main.class.getClassLoader()), "classes/META-INF/beans.xml");
+        deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/apache-deltaspike.properties", Main.class.getClassLoader()), "classes/META-INF/apache-deltaspike.properties");
 
         deployment.addAllDependencies();
 
