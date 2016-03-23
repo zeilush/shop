@@ -1,6 +1,5 @@
 package zeilush.shop.jaxrs;
 
-import org.apache.deltaspike.core.api.config.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zeilush.shop.common.config.ApplicationConfig;
@@ -24,10 +23,6 @@ import java.util.List;
 public class OrderResource {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderResource.class);
-
-    @Inject
-    @ConfigProperty(name = "app.version")
-    private String appVersion;
 
     @Inject
     private ApplicationConfig appConfig;
