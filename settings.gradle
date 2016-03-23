@@ -1,4 +1,0 @@
-rootProject.name = 'shop'
-include 'jaxrs'
-include 'order'
-
