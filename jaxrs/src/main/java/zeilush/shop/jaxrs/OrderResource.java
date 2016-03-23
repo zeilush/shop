@@ -35,11 +35,6 @@ public class OrderResource {
     @Inject
     private OrderManager orderManager;
 
-    @POST
-    public Order createOrder(Order order) {
-        return orderManager.createOrder(order);
-    }
-
     @GET
     @Path("/search")
     public List<Order> findOrderByName(@QueryParam("name") String name) {
