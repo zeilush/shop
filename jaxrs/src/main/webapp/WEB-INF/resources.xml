@@ -1,0 +1,9 @@
+<resources>
+    <Resource id="jdbc/MyDS" type="DataSource" classpath="mvn:org.postgresql:postgresql:9.3-1102-jdbc41">
+        JdbcDriver org.postgresql.Driver
+        JdbcUrl jdbc:postgresql://localhost:5432/postgres
+        UserName postgres
+        Password a
+        JtaManaged true
+    </Resource>
+</resources>
