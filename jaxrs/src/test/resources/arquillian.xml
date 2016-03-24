@@ -1,15 +1,51 @@
-<container qualifier="tomee" default="true">
-    <configuration>
-        <property name="httpPort">-1</property>
-        <property name="stopPort">-1</property>
-        <!--Optional Container Properties-->
-        <property name="properties">
-            aproperty=something
-        </property>
-        <!--Optional Remote Adapter Deployer Properties
-        <property name="deployerProperties">
-            aproperty=something
-        </property>
-        -->
-    </configuration>
-</container>
+<?xml version="1.0"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian
+    http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <container qualifier="tomee" default="true">
+
+        <configuration>
+            <property name="httpPort">-1</property>
+            <property name="stopPort">-1</property>
+            <property name="dir">target/apache-tomee-remote</property>
+            <property name="appWorkingDir">target/arquillian-test-working-dir</property>
+            <!-- postgres config-->
+            <!--<property name="properties">-->
+            <!--MyDS = new://Resource?type=DataSource-->
+            <!--MyDS.JdbcDriver = org.postgresql.Driver-->
+            <!--MyDS.JdbcUrl = jdbc:postgresql://localhost:5432/postgres-->
+            <!--MyDS.UserName = postgres-->
+            <!--MyDS.Password = a-->
+            <!--MyDS.JtaManaged = true-->
+            <!--MyDS.LogSql = true-->
+            <!--</property>-->
+
+            <property name="properties">
+                MyDS = new://Resource?type=DataSource
+                MyDS.JdbcDriver = org.hsqldb.jdbcDriver
+                MyDS.JdbcUrl = jdbc:hsqldb:mem:arquillian
+                MyDS.UserName = sa
+                MyDS.Password =
+                MyDS.JtaManaged = true
+                MyDS.LogSql = true
+            </property>
+        </configuration>
+    </container>
+
+    <extension qualifier="persistence">
+        <property name="defaultDataSource">openejb:Resource/MyDS</property>
+    </extension>
+
+    <!-- postgresql config -->
+    <!--<extension qualifier="persistence-dbunit">-->
+    <!--<property name="datatypeFactory">org.dbunit.ext.postgresql.PostgresqlDataTypeFactory</property>-->
+    <!--<property name="excludeTablesFromCleanup">hibernate_sequence</property>-->
+    <!--<property name="filterTables">true</property>-->
+    <!--</extension>-->
+
+    <!--<engine>-->
+    <!--<property name="deploymentExportPath">target/deployment</property>-->
+    <!--</engine>-->
+</arquillian>

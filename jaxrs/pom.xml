@@ -17,7 +17,9 @@
 
     <properties>
         <hibernate.version>4.2.16.Final</hibernate.version>
-        <deltaspike.version>1.5.4</deltaspike.version>
+        <arquillian.debug>true</arquillian.debug> <!-- tells arquillian to be verbose -->
+        <openejb.arquillian.debug>true</openejb.arquillian.debug> <!-- tells arquillian to be verbose -->
+        <tomee.version>1.7.4</tomee.version>
     </properties>
 
     <dependencies>
@@ -47,7 +49,7 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
+            <groupId>org.apache.openejb</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>
         <dependency>
@@ -64,10 +66,6 @@
             <artifactId>deltaspike-core-impl</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.deltaspike.core</groupId>
-            <artifactId>deltaspike-core-impl</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.deltaspike.modules</groupId>
             <artifactId>deltaspike-partial-bean-module-api</artifactId>
         </dependency>
@@ -76,14 +74,33 @@
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>arquillian-tomee-embedded</artifactId>
-            <version>1.7.1</version> <!--Current version-->
+            <version>${tomee.version}</version> <!--Current version-->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>tomee-embedded</artifactId>
-            <version>1.7.1</version>
+            <version>${tomee.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.testng</groupId>
+            <artifactId>arquillian-testng-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -92,9 +109,28 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
+            <groupId>org.jboss.arquillian.config</groupId>
+            <artifactId>arquillian-config-api</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-persistence-dbunit</artifactId>
+            <version>1.0.0.Alpha7</version>
+            <scope>test</scope>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.jboss.arquillian.extension</groupId>-->
+        <!--<artifactId>arquillian-transaction-jta</artifactId>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
     </dependencies>
+
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
+    </build>
 </project>
