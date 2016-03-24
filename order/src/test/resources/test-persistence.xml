@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="MyPU" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>MyDS</jta-data-source>
+
+        <class>zeilush.shop.order.entity.OrderItem</class>
+        <class>zeilush.shop.order.entity.Order</class>
+
+        <properties>
+            <!--<property name="hibernate.default_schema" value="test"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
